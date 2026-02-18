@@ -1,15 +1,14 @@
 import os
 from pathlib import Path
 
-# Base directories
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data" / "raw"
+PROCESSED_DIR = BASE_DIR / "data" / "processed"
 REPORTS_DIR = BASE_DIR / "reports"
-print(DATA_DIR)
-# Ensure directories exist
-REPORTS_DIR.mkdir(parents=True, exist_ok=True)
 
-# Dataset Files
+REPORTS_DIR.mkdir(parents=True, exist_ok=True)
+PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
+
 FILES = [
     "Friday-02-03-2018_TrafficForML_CICFlowMeter.csv",
     "Friday-16-02-2018_TrafficForML_CICFlowMeter.csv",
@@ -23,15 +22,28 @@ FILES = [
     "Wednesday-28-02-2018_TrafficForML_CICFlowMeter.csv",
 ]
 
-# Modeling Constants
 RANDOM_STATE = 42
-CV_FOLDS = 5
+CV_FOLDS = 3
 
-# Known Non-Feature Columns (to be dropped)
 DROP_COLUMNS = [
-    "Flow ID", "Source IP", "Destination IP",
-    "Source Port", "Destination Port", "Protocol"
+    "Dst Port",
+    "Protocol",
+    "Timestamp",
+    "Flow ID",
+    "Source IP",
+    "Destination IP",
+    "Source Port",
+    "Destination Port"
 ]
 
-# Logging Configuration
+LABEL_MAPPING = {
+    "Infilteration": "Infiltration",
+    "DDOS attack-HOIC": "DDoS attack-HOIC",
+    "DDOS attack-LOIC-UDP": "DDoS attack-LOIC-UDP",
+    "DDoS attacks-LOIC-HTTP": "DDoS attack-LOIC-HTTP",
+}
+
+MAX_ROWS = 2000000
+N_JOBS = 2
+
 LOG_LEVEL = "INFO"
