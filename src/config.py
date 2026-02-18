@@ -5,7 +5,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data" / "raw"
 REPORTS_DIR = BASE_DIR / "reports"
-
+print(DATA_DIR)
 # Ensure directories exist
 REPORTS_DIR.mkdir(parents=True, exist_ok=True)
 

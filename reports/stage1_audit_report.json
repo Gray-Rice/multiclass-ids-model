@@ -1,0 +1,33 @@
+{
+    "files_processed": 10,
+    "total_rows": 16233002,
+    "estimated_memory_mb": 6351.449591636658,
+    "missing_values": {
+        "Flow Byts/s": 59721
+    },
+    "infinity_counts": {
+        "Flow Byts/s": 32826,
+        "Flow Pkts/s": 86672
+    },
+    "class_distribution": {
+        "Benign": 13484708,
+        "Bot": 286191,
+        "DoS attacks-Hulk": 461912,
+        "DoS attacks-SlowHTTPTest": 139890,
+        "Brute Force -Web": 611,
+        "Brute Force -XSS": 230,
+        "SQL Injection": 87,
+        "DDoS attacks-LOIC-HTTP": 576191,
+        "Infiltration": 161934,
+        "DoS attacks-GoldenEye": 41508,
+        "DoS attacks-Slowloris": 10990,
+        "FTP-BruteForce": 193360,
+        "SSH-Bruteforce": 187589,
+        "DDOS attack-HOIC": 686012,
+        "DDOS attack-LOIC-UDP": 1730
+    },
+    "potential_issues": [
+        "Infinity values detected in numeric columns."
+    ],
+    "pipeline_validation": "Passed"
+}
