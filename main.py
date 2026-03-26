@@ -1,77 +1,88 @@
+import json
 import logging
-from src.config import PROCESSED_DIR, REPORTS_DIR
+from pathlib import Path
+
+from src.config import REPORTS_DIR
+from src.trainer_tabular import run_tabular_training
+from src.trainer_lstm import run_lstm_training
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
 
 
-def main():
-    if not (REPORTS_DIR / "stage1_audit_report.json").exists():
-        logger.info("Running Stage 1 Audit...")
-        from src.explorer import run_stage1_audit
+def _safe_get(dct, *keys, default=None):
+    cur = dct
+    for k in keys:
+        if not isinstance(cur, dict) or k not in cur:
+            return default
+        cur = cur[k]
+    return cur
 
-        run_stage1_audit()
-    else:
-        logger.info("Stage 1 Audit found. Skipping...")
 
-    logger.info("Starting Stage 2: Temporal-safe Training and Evaluation...")
-    try:
-        from src.trainer import (
-            load_and_clean_data_with_day_tag,
-            combine_cleaned_data,
-            train_and_evaluate_temporal,
+def _print_comparison(tabular_results: dict, lstm_results: dict):
+    rows = []
+
+    # Tabular models
+    for model_name, payload in tabular_results.get("models", {}).items():
+        rows.append(
+            {
+                "model": model_name,
+                "val_f1_macro": _safe_get(payload, "validation", "f1_macro", default=float("nan")),
+                "test_f1_macro": _safe_get(payload, "test", "f1_macro", default=float("nan")),
+                "val_accuracy": _safe_get(payload, "validation", "accuracy", default=float("nan")),
+                "test_accuracy": _safe_get(payload, "test", "accuracy", default=float("nan")),
+            }
         )
 
-        cleaned_path = PROCESSED_DIR / "cleaned_data.parquet"
+    # LSTM model
+    rows.append(
+        {
+            "model": "LSTM",
+            "val_f1_macro": _safe_get(lstm_results, "validation", "f1_macro", default=float("nan")),
+            "test_f1_macro": _safe_get(lstm_results, "test", "f1_macro", default=float("nan")),
+            "val_accuracy": _safe_get(lstm_results, "validation", "accuracy", default=float("nan")),
+            "test_accuracy": _safe_get(lstm_results, "test", "accuracy", default=float("nan")),
+        }
+    )
 
-        if cleaned_path.exists():
-            import pandas as pd
+    # Sort by test macro F1 descending
+    rows = sorted(rows, key=lambda x: x["test_f1_macro"], reverse=True)
 
-            logger.info("Loading existing cleaned_data.parquet...")
-            df = pd.read_parquet(cleaned_path)
-
-            # If old cleaned file has no day tags, rebuild from raw
-            if "__day_tag" not in df.columns:
-                logger.warning(
-                    "Existing cleaned_data.parquet has no __day_tag. Rebuilding from raw..."
-                )
-                saved_files, _ = load_and_clean_data_with_day_tag()
-                df = combine_cleaned_data(saved_files)
-                df.to_parquet(cleaned_path, index=False)
-                logger.info(f"Saved rebuilt cleaned data to {cleaned_path}")
-        else:
-            saved_files, _ = load_and_clean_data_with_day_tag()
-            df = combine_cleaned_data(saved_files)
-            df.to_parquet(cleaned_path, index=False)
-            logger.info(f"Saved combined data to {cleaned_path}")
-
-        tabular_results = train_and_evaluate_temporal(df)
-
-        print("\n--- Stage 2A Complete: Tabular Models ---")
-        for model_name, payload in tabular_results["models"].items():
-            val_f1 = payload["validation"]["f1_macro"]
-            test_f1 = payload["test"]["f1_macro"]
-            print(f"{model_name} Macro F1 -> val: {val_f1:.4f} | test: {test_f1:.4f}")
-
-    except Exception as e:
-        logger.error(f"Stage 2A (tabular) failed: {e}")
-        raise
-
-    logger.info("Starting Stage 2B: LSTM Baseline...")
-    try:
-        from src.lstm_trainer import train_and_evaluate_lstm
-
-        lstm_results = train_and_evaluate_lstm()
-
-        print("\n--- Stage 2B Complete: LSTM ---")
+    print("\n=== Model Comparison (Validation/Test) ===")
+    print(f"{'Model':<15} {'Val F1(macro)':>15} {'Test F1(macro)':>16} {'Val Acc':>12} {'Test Acc':>12}")
+    print("-" * 74)
+    for r in rows:
         print(
-            f"LSTM Macro F1 -> val: {lstm_results['validation']['f1_macro']:.4f} | "
-            f"test: {lstm_results['test']['f1_macro']:.4f}"
+            f"{r['model']:<15} "
+            f"{r['val_f1_macro']:>15.4f} "
+            f"{r['test_f1_macro']:>16.4f} "
+            f"{r['val_accuracy']:>12.4f} "
+            f"{r['test_accuracy']:>12.4f}"
         )
 
-    except Exception as e:
-        logger.error(f"Stage 2B (LSTM) failed: {e}")
-        raise
+
+def main():
+    logger.info("Running tabular training...")
+    tabular_results = run_tabular_training()
+
+    logger.info("Running LSTM training...")
+    lstm_results = run_lstm_training(seq_len=20, epochs=15, batch_size=1024)
+
+    # Save combined summary
+    combined = {
+        "tabular_results_file": str(REPORTS_DIR / "tabular_results.json"),
+        "lstm_results_file": str(REPORTS_DIR / "lstm_results.json"),
+        "tabular": tabular_results,
+        "lstm": lstm_results,
+    }
+
+    combined_path = REPORTS_DIR / "combined_results.json"
+    with open(combined_path, "w") as f:
+        json.dump(combined, f, indent=4)
+
+    logger.info(f"Saved combined results to {combined_path}")
+
+    _print_comparison(tabular_results, lstm_results)
 
 
 if __name__ == "__main__":
