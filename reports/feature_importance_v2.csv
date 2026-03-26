@@ -1,0 +1,77 @@
+feature,importance
+Init Fwd Win Byts,1997
+Flow Duration,835
+Fwd Seg Size Min,745
+Flow IAT Min,738
+Fwd IAT Min,696
+Flow IAT Mean,530
+Fwd Pkts/s,498
+Fwd IAT Max,404
+Flow Pkts/s,378
+Fwd IAT Tot,356
+RST Flag Cnt,340
+Tot Fwd Pkts,304
+Fwd Header Len,290
+Init Bwd Win Byts,281
+Flow IAT Max,274
+Bwd Pkt Len Mean,250
+Bwd Pkt Len Std,249
+Fwd Pkt Len Mean,234
+Fwd IAT Mean,223
+Flow IAT Std,222
+Down/Up Ratio,204
+TotLen Bwd Pkts,159
+Tot Bwd Pkts,152
+Flow Byts/s,143
+URG Flag Cnt,142
+Bwd Pkts/s,134
+Bwd Pkt Len Max,125
+Idle Min,109
+Fwd Pkt Len Max,98
+Bwd IAT Min,86
+Fwd IAT Std,81
+Bwd Pkt Len Min,67
+Pkt Len Mean,60
+FIN Flag Cnt,57
+Idle Mean,54
+Pkt Size Avg,54
+Bwd IAT Tot,50
+TotLen Fwd Pkts,44
+Active Min,43
+Bwd Header Len,43
+Pkt Len Std,41
+Active Mean,38
+Pkt Len Max,36
+Fwd Act Data Pkts,29
+Active Max,19
+Bwd IAT Max,15
+Fwd Pkt Len Std,12
+Bwd IAT Std,7
+Pkt Len Min,6
+Pkt Len Var,6
+Idle Max,5
+Active Std,4
+Bwd IAT Mean,4
+Fwd Pkt Len Min,2
+Fwd PSH Flags,1
+Bwd URG Flags,0
+SYN Flag Cnt,0
+Bwd PSH Flags,0
+Fwd URG Flags,0
+ACK Flag Cnt,0
+Bwd Blk Rate Avg,0
+Bwd Pkts/b Avg,0
+Bwd Byts/b Avg,0
+Fwd Blk Rate Avg,0
+Fwd Pkts/b Avg,0
+Fwd Byts/b Avg,0
+Bwd Seg Size Avg,0
+Fwd Seg Size Avg,0
+CWE Flag Count,0
+ECE Flag Cnt,0
+PSH Flag Cnt,0
+Subflow Bwd Byts,0
+Subflow Fwd Pkts,0
+Subflow Fwd Byts,0
+Subflow Bwd Pkts,0
+Idle Std,0
