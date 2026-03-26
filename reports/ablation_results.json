@@ -1,0 +1,199 @@
+{
+    "meta": {
+        "split_meta": {
+            "split_mode": "row_order",
+            "details": {}
+        },
+        "n_features_initial": 48,
+        "suspect_features": [
+            "Init Fwd Win Byts",
+            "Flow Duration",
+            "Fwd Seg Size Min",
+            "Flow IAT Min",
+            "Fwd IAT Min",
+            "Flow IAT Mean",
+            "Fwd Pkts/s",
+            "Fwd IAT Max"
+        ],
+        "top_k_steps": [
+            0,
+            1,
+            3,
+            5,
+            8
+        ]
+    },
+    "experiments": [
+        {
+            "k": 0,
+            "dropped_features": [],
+            "n_features_remaining": 48,
+            "scores": {
+                "LightGBM": {
+                    "validation": {
+                        "accuracy": 1.0,
+                        "f1_macro": 1.0,
+                        "f1_weighted": 1.0
+                    },
+                    "test": {
+                        "accuracy": 1.0,
+                        "f1_macro": 1.0,
+                        "f1_weighted": 1.0
+                    }
+                },
+                "RandomForest": {
+                    "validation": {
+                        "accuracy": 0.9990359399585405,
+                        "f1_macro": 0.9986214485876312,
+                        "f1_weighted": 0.9990365780790579
+                    },
+                    "test": {
+                        "accuracy": 0.998961013012313,
+                        "f1_macro": 0.9982371379009712,
+                        "f1_weighted": 0.9989620964127213
+                    }
+                }
+            }
+        },
+        {
+            "k": 1,
+            "dropped_features": [
+                "Init Fwd Win Byts"
+            ],
+            "n_features_remaining": 47,
+            "scores": {
+                "LightGBM": {
+                    "validation": {
+                        "accuracy": 0.9972626688978247,
+                        "f1_macro": 0.996097337348117,
+                        "f1_weighted": 0.997268506474398
+                    },
+                    "test": {
+                        "accuracy": 0.9971777516921002,
+                        "f1_macro": 0.9952307508678182,
+                        "f1_weighted": 0.997186351787992
+                    }
+                },
+                "RandomForest": {
+                    "validation": {
+                        "accuracy": 0.9972576737680762,
+                        "f1_macro": 0.9960901852701778,
+                        "f1_weighted": 0.9972635114240082
+                    },
+                    "test": {
+                        "accuracy": 0.9971727565623517,
+                        "f1_macro": 0.9952222581825214,
+                        "f1_weighted": 0.9971813567913058
+                    }
+                }
+            }
+        },
+        {
+            "k": 3,
+            "dropped_features": [
+                "Init Fwd Win Byts",
+                "Flow Duration",
+                "Fwd Seg Size Min"
+            ],
+            "n_features_remaining": 45,
+            "scores": {
+                "LightGBM": {
+                    "validation": {
+                        "accuracy": 0.9972626688978247,
+                        "f1_macro": 0.996097337348117,
+                        "f1_weighted": 0.997268506474398
+                    },
+                    "test": {
+                        "accuracy": 0.9971777516921002,
+                        "f1_macro": 0.9952307508678182,
+                        "f1_weighted": 0.997186351787992
+                    }
+                },
+                "RandomForest": {
+                    "validation": {
+                        "accuracy": 0.9972177127300882,
+                        "f1_macro": 0.9960329646282802,
+                        "f1_weighted": 0.9972235496211239
+                    },
+                    "test": {
+                        "accuracy": 0.9971427857838607,
+                        "f1_macro": 0.995171298214337,
+                        "f1_weighted": 0.9971513856796056
+                    }
+                }
+            }
+        },
+        {
+            "k": 5,
+            "dropped_features": [
+                "Init Fwd Win Byts",
+                "Flow Duration",
+                "Fwd Seg Size Min"
+            ],
+            "n_features_remaining": 45,
+            "scores": {
+                "LightGBM": {
+                    "validation": {
+                        "accuracy": 0.9972626688978247,
+                        "f1_macro": 0.996097337348117,
+                        "f1_weighted": 0.997268506474398
+                    },
+                    "test": {
+                        "accuracy": 0.9971777516921002,
+                        "f1_macro": 0.9952307508678182,
+                        "f1_weighted": 0.997186351787992
+                    }
+                },
+                "RandomForest": {
+                    "validation": {
+                        "accuracy": 0.9972177127300882,
+                        "f1_macro": 0.9960329646282802,
+                        "f1_weighted": 0.9972235496211239
+                    },
+                    "test": {
+                        "accuracy": 0.9971427857838607,
+                        "f1_macro": 0.995171298214337,
+                        "f1_weighted": 0.9971513856796056
+                    }
+                }
+            }
+        },
+        {
+            "k": 8,
+            "dropped_features": [
+                "Init Fwd Win Byts",
+                "Flow Duration",
+                "Fwd Seg Size Min",
+                "Flow IAT Mean",
+                "Fwd Pkts/s"
+            ],
+            "n_features_remaining": 43,
+            "scores": {
+                "LightGBM": {
+                    "validation": {
+                        "accuracy": 0.9972626688978247,
+                        "f1_macro": 0.996097337348117,
+                        "f1_weighted": 0.997268506474398
+                    },
+                    "test": {
+                        "accuracy": 0.9971777516921002,
+                        "f1_macro": 0.9952307508678182,
+                        "f1_weighted": 0.997186351787992
+                    }
+                },
+                "RandomForest": {
+                    "validation": {
+                        "accuracy": 0.9972576737680762,
+                        "f1_macro": 0.9960901852701778,
+                        "f1_weighted": 0.9972635114240082
+                    },
+                    "test": {
+                        "accuracy": 0.9971727565623517,
+                        "f1_macro": 0.9952222581825214,
+                        "f1_weighted": 0.9971813567913058
+                    }
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,49 @@
+feature,importance
+Init Fwd Win Byts,5507
+Flow IAT Mean,4475
+Flow IAT Max,3432
+Flow Pkts/s,3303
+Flow Duration,3192
+Fwd Pkts/s,3120
+Fwd Seg Size Min,1759
+Fwd Header Len,1467
+Init Bwd Win Byts,1365
+Bwd Pkts/s,1198
+Flow IAT Std,1023
+Subflow Fwd Pkts,958
+Bwd Pkt Len Max,864
+Bwd Pkt Len Std,745
+Bwd IAT Min,734
+Fwd IAT Std,724
+Active Min,608
+Fwd Pkt Len Max,573
+Pkt Len Mean,491
+Bwd Pkt Len Mean,466
+Flow Byts/s,458
+Idle Max,414
+Subflow Fwd Byts,391
+Bwd Header Len,390
+Fwd Pkt Len Std,387
+ECE Flag Cnt,375
+Fwd Pkt Len Mean,347
+Pkt Len Max,342
+Down/Up Ratio,318
+Active Mean,312
+URG Flag Cnt,278
+Active Max,242
+Pkt Len Std,219
+FIN Flag Cnt,207
+Idle Std,182
+Bwd IAT Std,172
+Bwd IAT Mean,151
+PSH Flag Cnt,129
+Fwd Act Data Pkts,105
+Bwd IAT Tot,93
+Bwd IAT Max,86
+Fwd Pkt Len Min,69
+Pkt Len Var,53
+Fwd PSH Flags,51
+ACK Flag Cnt,43
+Active Std,14
+Bwd Pkt Len Min,2
+Pkt Len Min,0
