@@ -1,0 +1,238 @@
+{
+    "meta": {
+        "split_meta": {
+            "split_mode": "row_order",
+            "details": {}
+        },
+        "n_features": 48,
+        "classes": [
+            "Benign",
+            "Bot",
+            "DoS attacks-Hulk",
+            "DoS attacks-SlowHTTPTest"
+        ],
+        "sequence_length": 20,
+        "train_sequences": 934221,
+        "val_sequences": 200175,
+        "test_sequences": 200175,
+        "epochs_ran": 13,
+        "model": "BiGRU",
+        "overfit_controls": {
+            "gru_dropout": 0.2,
+            "gru_recurrent_dropout": 0.2,
+            "dense_dropout": 0.3,
+            "l2": 0.0001,
+            "early_stopping_patience": 5,
+            "reduce_lr_on_plateau": true,
+            "class_weight_balanced": true,
+            "clipnorm": 1.0
+        }
+    },
+    "validation": {
+        "accuracy": 0.6155863619333084,
+        "f1_macro": 0.5997237384715554,
+        "f1_weighted": 0.6434861725480627,
+        "recall_macro": 0.7249059114399523,
+        "per_class": {
+            "0": {
+                "precision": 0.9596200922700311,
+                "recall": 0.5258551749045506,
+                "f1": 0.6794070592940706,
+                "support": 155056
+            },
+            "1": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 0
+            },
+            "2": {
+                "precision": 0.36185301240376017,
+                "recall": 0.923956647975354,
+                "f1": 0.5200404176490401,
+                "support": 45119
+            },
+            "3": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 0
+            }
+        },
+        "confusion_matrix": [
+            [
+                81537,
+                0,
+                73519,
+                0
+            ],
+            [
+                0,
+                0,
+                0,
+                0
+            ],
+            [
+                3431,
+                0,
+                41688,
+                0
+            ],
+            [
+                0,
+                0,
+                0,
+                0
+            ]
+        ],
+        "confusion_matrix_normalized_true": [
+            [
+                0.5258551749045506,
+                0.0,
+                0.47414482509544936,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.07604335202464593,
+                0.0,
+                0.923956647975354,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        ]
+    },
+    "test": {
+        "accuracy": 0.6879180716872736,
+        "f1_macro": 0.6399442244918389,
+        "f1_weighted": 0.7242950219782774,
+        "recall_macro": 0.7713918895542424,
+        "per_class": {
+            "0": {
+                "precision": 0.9675630514418971,
+                "recall": 0.6413305420997542,
+                "f1": 0.7713720022104866,
+                "support": 164324
+            },
+            "1": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 0
+            },
+            "2": {
+                "precision": 0.3541465766634523,
+                "recall": 0.9014532370087306,
+                "f1": 0.5085164467731911,
+                "support": 35851
+            },
+            "3": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 0
+            }
+        },
+        "confusion_matrix": [
+            [
+                105386,
+                0,
+                58938,
+                0
+            ],
+            [
+                0,
+                0,
+                0,
+                0
+            ],
+            [
+                3533,
+                0,
+                32318,
+                0
+            ],
+            [
+                0,
+                0,
+                0,
+                0
+            ]
+        ],
+        "confusion_matrix_normalized_true": [
+            [
+                0.6413305420997542,
+                0.0,
+                0.35866945790024585,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.09854676299126942,
+                0.0,
+                0.9014532370087306,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        ]
+    },
+    "test_classification_report": {
+        "Benign": {
+            "precision": 0.9675630514418971,
+            "recall": 0.6413305420997542,
+            "f1-score": 0.7713720022104866,
+            "support": 164324.0
+        },
+        "Bot": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 0.0
+        },
+        "DoS attacks-Hulk": {
+            "precision": 0.3541465766634523,
+            "recall": 0.9014532370087306,
+            "f1-score": 0.5085164467731911,
+            "support": 35851.0
+        },
+        "DoS attacks-SlowHTTPTest": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 0.0
+        },
+        "accuracy": 0.6879180716872736,
+        "macro avg": {
+            "precision": 0.3304274070263373,
+            "recall": 0.3856959447771212,
+            "f1-score": 0.3199721122459194,
+            "support": 200175.0
+        },
+        "weighted avg": {
+            "precision": 0.857701210366428,
+            "recall": 0.6879180716872736,
+            "f1-score": 0.7242950219782774,
+            "support": 200175.0
+        }
+    }
+}
